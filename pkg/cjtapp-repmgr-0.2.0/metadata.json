@@ -1,0 +1,32 @@
+{
+  "name": "cjtapp-repmgr",
+  "version": "0.2.0",
+  "author": "cjtapp",
+  "summary": "Module to install and configure repmgr",
+  "license": "GPL-3.0",
+  "source": "https://github.com/cjtapp/repmgr",
+  "project_page": "https://github.com/cjtapp/repmgr",
+  "issues_url": "https://github.com/cjtapp/repmgr/issues",
+  "description": "Module to install and configure repmgr. Based on the work of RHedges",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
+    }
+  ],
+  "tags": [
+    "repmgr",
+    "postgresql"
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 3.6.0"}
+  ]
+}

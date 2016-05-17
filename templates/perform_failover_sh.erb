@@ -1,0 +1,36 @@
+#!/bin/bash
+
+## PUPPET MANAGED ##
+
+# This script relies on the 'real_primary' custom fact, and on profile::vcli_01
+# for it's STONITH capability.
+
+# Find the most appropriate facter binary.
+[[ -x '/opt/puppetlabs/bin/facter' ]] && facter='/opt/puppetlabs/bin/facter' \
+|| facter=$(which facter)
+
+# Exit if we can't find one, as we can't guarantee we'd be killing the right
+# node without it.
+[[ -n $facter ]] \
+|| { echo 'Cannot find a facter binary. Exiting for safety'; exit 1; }
+
+# Find the current primary for this node.
+primary=$(sudo ${facter} -p real_primary)
+[[ -n $primary ]] \
+|| { echo 'No acceptable value for real_primary found. Exiting for safety.'; exit 2; }
+
+# Promote this node to primary.
+repmgr -f <%= @repmgr_conf_dir %>/repmgr.conf --verbose standby promote
+
+# Attempt to stop and disable postgresql on the old primary.
+ssh -t $primary 'sudo /etc/init.d/postgresql stop ; sudo update-rc.d postgresql disable' \
+|| { echo 'Unable to ssh to primary to stop and disable postgresql'; }
+
+# Attempt to append firewall rule blocking incoming postgresql requests on the old primary.
+# ssh -t $primary 'sudo iptables -A INPUT -p tcp --dport 5432 -j DROP' \
+# || { echo 'Unable to ssh to primary to append firewall rule'; }
+
+# Use VMware STONITH capability to finish off old primary.
+[[ -n $(which kill-vm) ]] \
+&& kill-vm <%= @vc_server %> $primary poweroff \
+|| { echo 'kill-vm failed. VMware STONITH did not work.'; }
