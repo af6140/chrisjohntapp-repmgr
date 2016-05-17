@@ -17,21 +17,25 @@
 #
 class repmgr
 (
-  $packages            = $repmgr::params::packages,
-  $cluster_name        = $repmgr::params::cluster_name,
-  $primary             = $repmgr::params::primary,
-  $node_number         = $repmgr::params::node_number,
-  $node_name           = $repmgr::params::node_name,
-  $node_priority       = $repmgr::params::node_priority,
-  $repmgr_conf_dir     = $repmgr::params::repmgr_conf_dir,
-  $repmgr_log_dir      = $repmgr::params::repmgr_log_dir,
-  $postgresql_group    = $repmgr::params::postgresql_group,
-  $postgresql_user     = $repmgr::params::postgresql_user,
-  $postgresql_version  = $repmgr::params::postgresql_version,
-  $postgresql_home     = $repmgr::params::postgresql_home,
-  $repmgr_db_name      = $repmgr::params::repmgr_db_name,
-  $repmgr_db_user_name = $repmgr::params::repmgr_db_user_name,
-  $vc_server           = $repmgr::params::repmgr_vc_server,
+  $common_package_name    = $repmgr::params::common_package_name,
+  $common_package_version = $repmgr::params::common_package_version,
+  $pg_package_name        = $repmgr::params::pg_package_name,
+  $pg_package_version     = $repmgr::params::pg_package_version,
+  $additional_packages    = $repmgr::params::additional_packages,
+  $cluster_name           = $repmgr::params::cluster_name,
+  $primary                = $repmgr::params::primary,
+  $node_number            = $repmgr::params::node_number,
+  $node_name              = $repmgr::params::node_name,
+  $node_priority          = $repmgr::params::node_priority,
+  $repmgr_conf_dir        = $repmgr::params::repmgr_conf_dir,
+  $repmgr_log_dir         = $repmgr::params::repmgr_log_dir,
+  $postgresql_group       = $repmgr::params::postgresql_group,
+  $postgresql_user        = $repmgr::params::postgresql_user,
+  $postgresql_version     = $repmgr::params::postgresql_version,
+  $postgresql_home        = $repmgr::params::postgresql_home,
+  $repmgr_db_name         = $repmgr::params::repmgr_db_name,
+  $repmgr_db_user_name    = $repmgr::params::repmgr_db_user_name,
+  $vc_server              = undef,
 )
 {
   $postgresql_conf_dir = "/etc/postgresql/${postgresql_version}/main"
@@ -93,15 +97,6 @@ class repmgr
     file { 'repmgr.log':
       ensure => file,
       path   => "${repmgr_log_dir}/repmgr.log",
-      group  => $postgresql_group,
-      owner  => $postgresql_user,
-      mode   => '0600',
-    } ->
-
-    # Create failover log if required.
-    file { 'perform_failover.log':
-      ensure => file,
-      path   => "${repmgr_log_dir}/perform_failover.log",
       group  => $postgresql_group,
       owner  => $postgresql_user,
       mode   => '0600',

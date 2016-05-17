@@ -15,9 +15,8 @@
 #   %d - details
 
 recipients=(
-             #'operations@bmj.com'
-             'ctapp@bmj.com'
-)
+              'operations@whoever.com'
+            )
 
 node=$1
 event_type=$2
@@ -37,5 +36,5 @@ PATH="$PATH:/usr/bin"
 mailx=$(which mailx) || { echo "mailx not found. Exiting."; exit 1; }
 
 for r in ${recipients[@]}; do
-  echo "$timestamp -- $details" | $mailx -s "$event_type on <%= @product %>; Node ID: ${node} (<%= @node_name %>); Result: ${result}. $timestamp" $r
+  echo "$timestamp -- $details" | $mailx -s "$event_type on <%= @node_name %>; Result: ${result}. $timestamp" $r
 done
