@@ -1,13 +1,13 @@
 {
-  "name": "cjtapp-repmgr",
+  "name": "puppet-repmgr",
   "version": "0.1.6",
-  "author": "cjtapp",
+  "author": "chrisjohntapp",
   "summary": "Module to install and configure repmgr",
   "license": "GPL-3.0",
-  "source": "https://github.com/cjtapp/repmgr",
-  "project_page": "https://github.com/cjtapp/repmgr",
-  "issues_url": "https://github.com/cjtapp/repmgr/issues",
-  "description": "Module to install and configure repmgr. Based on the work of RHedges",
+  "source": "https://github.com/chrisjohntapp/puppet-repmgr",
+  "project_page": "https://github.com/chrisjohntapp/puppet-repmgr",
+  "issues_url": "https://github.com/chrisjohntapp/puppet-repmgr/issues",
+  "description": "Module to install and configure repmgr",
   "operatingsystem_support": [
     {
       "operatingsystem": "Ubuntu",
