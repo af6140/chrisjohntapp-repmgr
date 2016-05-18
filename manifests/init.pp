@@ -36,6 +36,7 @@ class repmgr
   $repmgr_db_name         = $repmgr::params::repmgr_db_name,
   $repmgr_db_user_name    = $repmgr::params::repmgr_db_user_name,
   $vc_server              = undef,
+  $notify_email           = undef,
 )
 {
   $postgresql_conf_dir = "/etc/postgresql/${postgresql_version}/main"

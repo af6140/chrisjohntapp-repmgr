@@ -14,9 +14,7 @@
 #   %t - timestamp
 #   %d - details
 
-recipients=(
-              'operations@bmj.com'
-            )
+recipients=( <%= @notify_email %> )
 
 node=$1
 event_type=$2
