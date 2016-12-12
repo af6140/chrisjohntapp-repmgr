@@ -4,9 +4,9 @@
   "author": "chrisjohntapp",
   "summary": "Module to install and configure repmgr",
   "license": "GPL-3.0",
-  "source": "https://github.com/chrisjohntapp/puppet-repmgr",
-  "project_page": "https://github.com/chrisjohntapp/puppet-repmgr",
-  "issues_url": "https://github.com/chrisjohntapp/puppet-repmgr/issues",
+  "source": "https://github.com/chrisjohntapp/chrisjohntapp-repmgr",
+  "project_page": "https://github.com/chrisjohntapp/chrisjohntapp-repmgr",
+  "issues_url": "https://github.com/chrisjohntapp/chrisjohntapp-repmgr/issues",
   "description": "Module to install and configure repmgr.",
   "operatingsystem_support": [
     {

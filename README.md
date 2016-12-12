@@ -1,4 +1,4 @@
-# puppet-repmgr
+# repmgr
 
 ## Overview
 
