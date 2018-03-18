@@ -8,6 +8,8 @@
 # This fact is called by the perform_failover.sh script, and supplies the info
 # required for the fencing/STONITH mechanism.
 
+which repmgr >/dev/null 2>&1 || exit 0
+
 cd /tmp \
 || { echo 'Unable to cd to /tmp. Exiting.'; exit 0; }
 

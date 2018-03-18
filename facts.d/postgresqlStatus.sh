@@ -2,6 +2,8 @@
 # Returns 'unknown', 'down', 'online', 'recovery', or a combination string with
 # no spaces (eg. 'downrecovery').
 
+which repmgr >/dev/null 2>&1 || exit 0
+
 status='unknown'
 
 if [[ -x /etc/init.d/postgresql ]]; then

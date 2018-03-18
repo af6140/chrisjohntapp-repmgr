@@ -1,6 +1,8 @@
 #!/bin/bash
 # Returns 'primary', 'secondary', 'unknown', or 'notier'.
 
+which repmgr >/dev/null 2>&1 || exit 0
+
 if [[ -z "$(which repmgr)" ]] || [[ ! -x '/etc/init.d/postgresql' ]]; then
   echo 'replication_tier=unknown'
   exit 0
